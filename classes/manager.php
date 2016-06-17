@@ -49,6 +49,12 @@ class local_string_override_manager extends core_string_manager_standard {
             }
             // Now loop through all langs in correct order.
             $deps = $this->get_language_dependencies($lang);
+
+            if (empty($deps)) {
+                // This allows us to override also English strings
+                $deps = array('en');
+            }
+
             foreach ($deps as $dep) {
                 // The main lang string location.
                 if (file_exists("$this->otherroot/$dep/$file.php")) {
