@@ -8,6 +8,12 @@ inconsistent with the new behavior. This plugin makes it possible for plugins
 to override the existing translations regardless if they're bundled with Moodle
 or they're originated from a community plugin.
 
+## Installation
+
+ 1. Place the plugin source code to `/local/string_override/` directory
+ 2. Enable the string manager in `config.php` with:
+
+     `$CFG->customstringmanager = 'local_string_override_manager';`
 
 ## How to use it
 
@@ -19,5 +25,4 @@ or they're originated from a community plugin.
    - E.g. `local/lazydog/lang/en/auth.php`
  4. Add the string identifier to the file using the standard translation file syntax
 
-    <?php
-    $string['auth_changepasswordhelp_expl'] = 'Your custom translation here';
+    `$string['auth_changepasswordhelp_expl'] = 'Your custom translation here';`
