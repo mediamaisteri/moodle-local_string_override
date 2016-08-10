@@ -25,3 +25,5 @@
 $plugin->version  = 2016081000;       // The (date) version of this plugin
 $plugin->requires = 2015051100;       // Requires this Moodle version
 $plugin->component = 'local_string_override'; // Declares the type and name of this plugin
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = '1.0.0';
