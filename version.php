@@ -22,6 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version  = 2016061700;       // The (date) version of this plugin
+$plugin->version  = 2016081000;       // The (date) version of this plugin
 $plugin->requires = 2015051100;       // Requires this Moodle version
 $plugin->component = 'local_string_override'; // Declares the type and name of this plugin
