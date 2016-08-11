@@ -21,7 +21,6 @@
  * @copyright  2016 Mediamaisteri Oy <info@mediamaisteri.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class local_string_override_manager extends core_string_manager_standard {
     /**
      * Load all strings for one component
