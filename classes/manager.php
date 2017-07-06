@@ -123,6 +123,15 @@ class local_string_override_manager extends core_string_manager_standard {
 
             // Now loop through all langs in correct order.
             $deps = $this->get_language_dependencies($lang);
+
+            if (empty($deps)) {
+                // This allows us to override also English strings.
+                $deps = array('en');
+            }
+
+            $plugin_manager = core_plugin_manager::instance();
+            $subplugins = $plugin_manager->get_subplugins_of_plugin("{$plugintype}_{$pluginname}");
+
             foreach ($deps as $dep) {
                 // Legacy location - used by contrib only.
                 if (file_exists("$location/lang/$dep/$file.php")) {
@@ -140,6 +149,22 @@ class local_string_override_manager extends core_string_manager_standard {
 
                         if (file_exists($filename)) {
                             include($filename);
+                        }
+
+                        // Also check the existence of custom translations for the
+                        // component's subplugins (if any).
+                        foreach ($subplugins as $subpluginname => $subplugin) {
+                            // Unconveniently the directory name of the subplugins is
+                            // not the same as the name of the subplugin type. Therefore
+                            // we need this hack to find out the directory name.
+                            $path_parts = explode("/", $subplugin->typerootdir);
+                            $subplugin_dir = array_pop($path_parts);
+
+                            $subplugin_filename = "$plugindir/$subplugin_dir/{$subplugin->name}/lang/$dep/$subpluginname.php";
+
+                            if (file_exists($subplugin_filename)) {
+                                include($subplugin_filename);
+                            }
                         }
                     }
                 }
